@@ -11,11 +11,11 @@
 
     <title>Garage | Home</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset ('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset ('font-awesome/css/font-awesome.css')}}">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset ('css/animate.css')}}">
+    <link rel="stylesheet" href="{{ asset ('css/style.css')}}">
 
 </head>
 
@@ -26,42 +26,52 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
+                        <img alt="image" class="rounded-circle" src="{{ asset ('img/motorbike.png')}}"/>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">Ramal Pathmila</span>
-                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                            <span class="block m-t-xs font-bold">MyGarageLk</span>
+                            <span class="text-muted text-xs block">Settings <b class="caret"></b></span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a class="dropdown-item" href="profile.html">Profile</a></li>
                             <li class="dropdown-divider"></li>
-                            {{-- <li><a class="dropdown-item" href="logout">logout</a></li> --}}
+                           <li><a class="dropdown-item" href="logout">logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
                         Garage
                     </div>
                 </li>
-                <li class="active">
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label"></span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="index.html">Dashboard v.1</a></li>
-                        <li class="active"><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        {{-- <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li> --}}
-                    </ul>
-                </li>
+
+                 
+               {{--  has-treeview menu-open  ===  remove --}}
+          <li>
+            <a href="{{route('home')}}" class="nav-link ">
+            <i class="fa fa-desktop"></i> 
+                Home   
+            </a>
+          </li>
+
                 <li>
-                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Employees</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="graph_flot.html">Flot Charts</a></li>
-                       
-                        <li><a href="graph_sparkline.html">Sparkline Charts</a></li>
+                        
+                        <li>
+                            <a href="{{route('role.index')}}" class="nav-link"> 
+                              <i class="fa fa-diamond"></i>
+                                Roles
+                            </a>
+                          </li>
+
+                        <li>
+                            <a href="{{route('employee.index')}}"  class="nav-link">
+                            <i class="fa fa-diamond"></i>
+                                Employee
+                            </a>
+                          </li>
                     </ul>
                 </li>
+
+
                 <li>
                     <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning float-right">16/24</span></a>
                     <ul class="nav nav-second-level collapse">
@@ -722,44 +732,44 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="{{asset("js/jquery-3.1.1.min.js")}}"></script>
+    <script src="{{asset("js/popper.min.js")}}"></script>
+    <script src="{{asset("js/bootstrap.js")}}"></script>
+    <script src="{{asset("js/plugins/metisMenu/jquery.metisMenu.js")}}"></script>
+    <script src="{{asset("js/plugins/slimscroll/jquery.slimscroll.min.js")}}"></script>
 
     <!-- Flot -->
-    <script src="js/plugins/flot/jquery.flot.js"></script>
-    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-    <script src="js/plugins/flot/jquery.flot.symbol.js"></script>
-    <script src="js/plugins/flot/jquery.flot.time.js"></script>
+    <script src="{{asset("js/plugins/flot/jquery.flot.js")}}"></script>
+    <script src="{{asset("js/plugins/flot/jquery.flot.tooltip.min.js")}}"></script>
+    <script src="{{asset("js/plugins/flot/jquery.flot.spline.js")}}"></script>
+    <script src="{{asset("js/plugins/flot/jquery.flot.resize.js")}}"></script>
+    <script src="{{asset("js/plugins/flot/jquery.flot.pie.js")}}"></script>
+    <script src="{{asset("js/plugins/flot/jquery.flot.symbol.js")}}"></script>
+    <script src="{{asset("js/plugins/flot/jquery.flot.time.js")}}"></script>
 
     <!-- Peity -->
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="js/demo/peity-demo.js"></script>
+    <script src="{{asset("js/plugins/peity/jquery.peity.min.js")}}"></script>
+    <script src="{{asset("js/demo/peity-demo.js")}}"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="{{asset("js/inspinia.js")}}"></script>
+    <script src="{{asset("js/plugins/pace/pace.min.js")}}"></script>
 
     <!-- jQuery UI -->
-    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{{asset("js/plugins/jquery-ui/jquery-ui.min.js")}}"></script>
 
     <!-- Jvectormap -->
-    <script src="js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="{{asset("js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js")}}"></script>
+    <script src="{{asset("js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js")}}"></script>
 
     <!-- EayPIE -->
-    <script src="js/plugins/easypiechart/jquery.easypiechart.js"></script>
+    <script src="{{asset("js/plugins/easypiechart/jquery.easypiechart.js")}}"></script>
 
     <!-- Sparkline -->
-    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="{{asset("js/plugins/sparkline/jquery.sparkline.min.js")}}"></script>
 
     <!-- Sparkline demo data  -->
-    <script src="js/demo/sparkline-demo.js"></script>
+    <script src="{{asset("js/demo/sparkline-demo.js")}}"></script>
 
     <script>
         $(document).ready(function() {
