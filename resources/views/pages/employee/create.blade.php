@@ -27,7 +27,7 @@
       <div class="form-group">
         <div class="row">
           <label class="col-md-3">Name</label>
-          <div class="col-md-6"><input type="text" name="name" class="form-control"></div>
+          <div class="col-md-6"><input type="text" name="name" class="form-control" required></div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -35,7 +35,7 @@
       <div class="form-group">
         <div class="row">
           <label class="col-md-3">Nick Name</label>
-          <div class="col-md-6"><input type="text" name="nick_name" class="form-control"></div>
+          <div class="col-md-6"><input type="text" name="nick_name" class="form-control" required></div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -43,31 +43,31 @@
       <div class="form-group">
         <div class="row">
           <label class="col-md-3">Address</label>
-          <div class="col-md-6"><input type="text" name="address" class="form-control"></div>
+          <div class="col-md-6"><input type="text" name="address" class="form-control" required></div>
           <div class="clearfix"></div>
         </div>
       </div>
 
 {{-- 8 --}}
-{{-- <div class="form-group">
+<div class="form-group">
   <div class="row">
     <label class="col-md-3">Role</label>
     <div class="col-md-6">
-      <select name="role_id" class="form-control">
+      <select name="role_id" class="form-control" required>
         <option value="">Choose a Role</option>
-        @foreach($roles as $r)
+        @foreach($role as $r)
           <option value="{{ $r->id }}">{{ $r->role_name }}</option>
         @endforeach
       </select>
     </div>
     <div class="clearfix"></div>
   </div>
-</div> --}}
+</div>
 
       <div class="form-group">
         <div class="row">
           <label class="col-md-3">Phone</label>
-          <div class="col-md-6"><input type="text" name="phone" class="form-control"></div>
+          <div class="col-md-6"><input type="text" name="phone" class="form-control" required></div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -75,7 +75,7 @@
       <div class="form-group">
         <div class="row">
           <label class="col-md-3">Employee Image</label>
-          <div class="col-md-6"><input type="file" name="emp_image"></div>
+          <div class="col-md-6"><input type="file" name="emp_image" required></div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -83,7 +83,7 @@
       <div class="form-group">
         <div class="row">
           <label class="col-md-3">Id Front Image</label>
-          <div class="col-md-6"><input type="file" name="id_front"></div>
+          <div class="col-md-6"><input type="file" name="id_front" required></div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -91,7 +91,7 @@
       <div class="form-group">
         <div class="row">
           <label class="col-md-3">Id Back Image</label>
-          <div class="col-md-6"><input type="file" name="id_back"></div>
+          <div class="col-md-6"><input type="file" name="id_back" required></div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -100,13 +100,14 @@
         <div class="row">
           <label class="col-md-3">Specilist</label>
           <div class="col-md-6">
-              <textarea name="specilist" class="form-control"></textarea>
+              <textarea name="specilist" class="form-control" required></textarea>
             </div>
           <div class="clearfix"></div>
         </div>
       </div>
       <div class="form-group">
         <input type="submit" class="btn btn-info" value="Save">
+        <a href="{{route('employee.index')}}" class="btn btn-primary">Back</a>
       </div>
     </form>
   </div>

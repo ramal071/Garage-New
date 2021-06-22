@@ -208,15 +208,24 @@
         <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="search_results.html">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+              <form role="search" class="navbar-form-custom" action="/search">
+                <div class="form-group ">
+                    <input type="search" placeholder="Search for something..." class="form-control search" name="query" id="search">
                 </div>
             </form>
+{{-- 
+            <form action="/search" class="navbar-form navbar-left">
+                <div class="form-group">
+                  <input type="text" name="query" class="form-control search-box" placeholder="Search Here">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+              </form> --}}
+
+
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to MyGarageLk !</span>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">

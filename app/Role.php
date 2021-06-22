@@ -9,7 +9,7 @@ class Role extends Model
     //  add roles to technician
     //  protected $table = 'roles';
 
-    public function employees()
+    public function employee()
     {
         return $this->hasMany('App\Employee');
     }

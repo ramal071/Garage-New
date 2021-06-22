@@ -8,6 +8,15 @@ use App\Role;
 
 class EmployeeController extends Controller
 {
+     public function search(Request $request)
+     {
+          $data= Employee::where('nick_name', 'like', '%'.$request->input('query'). '%')
+          ->orWhere('id','like', '%'.$request->input('query'). '%')
+          ->orWhere('name','like', '%'.$request->input('query'). '%')
+          ->get();
+          return view('pages.employee.search', ['employee'=>$data]);
+     }
+
     public function __construct()
     { // chec user login or not
         $this->middleware('auth');
@@ -31,10 +40,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
-        // $arr['employee'] = Role::all();
-        // return view('pages.employee.create')->with($arr);
-        return view('pages.employee.create');
+        $arr['role'] = Role::all();
+        return view('pages.employee.create')->with($arr);
+       // return view('pages.employee.create');
     }
 
     /**
@@ -45,8 +53,6 @@ class EmployeeController extends Controller
      */
     public function store(Request $request, Employee $employee)
     {
-        //  echo $request->emp_image->getClientOriginalName();die();
-
          if($request->emp_image->getClientOriginalName()){
              $ext =  $request->emp_image->getClientOriginalExtension();
              $file = date('YmdHis').rand(1,99999).'.'.$ext;
@@ -58,37 +64,34 @@ class EmployeeController extends Controller
         }
 
         if($request->id_front->getClientOriginalName()){
-            $ext =  $request->id_front->getClientOriginalExtension();
-            $file = date('YmdHis').rand(1,99999).'.'.$ext;
-            $request->id_front->storeAs('public/employee',$file);
+            $ext1 =  $request->id_front->getClientOriginalExtension();
+            $file1 = date('YmdHis').rand(1,99999).'.'.$ext1;
+            $request->id_front->storeAs('public/employee',$file1);
        }
        else
        {
-           $file = '';
+           $file1 = '';
        }
 
        if($request->id_back->getClientOriginalName()){
-        $ext =  $request->id_back->getClientOriginalExtension();
-        $file = date('YmdHis').rand(1,99999).'.'.$ext;
-        $request->id_back->storeAs('public/employee',$file);
+        $ext2 =  $request->id_back->getClientOriginalExtension();
+        $file2 = date('YmdHis').rand(1,99999).'.'.$ext2;
+        $request->id_back->storeAs('public/employee',$file2);
    }
    else
    {
-       $file = '';
+       $file2 = '';
    }
 
 
-     //   $employee->role_id = $request->role_id;
+        $employee->role_id = $request->role_id;
         $employee->emp_image = $file;
-        $employee->id_front = $file;
-       $employee->id_back = $file;
+        $employee->id_front = $file1;
+        $employee->id_back = $file2;
         $employee->name = $request->name;
         $employee->nick_name = $request->nick_name;
         $employee->phone = $request->phone;
         $employee->address = $request->address;
-        //$employee->emp_image = $request->emp_image;
-        // $employee->id_front = $request->id_front;
-        // $employee->id_back = $request->id_back;
         $employee->specilist = $request->specilist;
         $employee->save();
         return redirect()->route('employee.index');
@@ -114,7 +117,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         $arr['employee'] =$employee;
-        $arr['role'] = Role::all();  //  8
+        $arr['role'] = Role::all();  
         return view('pages.employee.edit')->with($arr);
     }
 
@@ -141,43 +144,39 @@ class EmployeeController extends Controller
        }
 
        if(isset($request->id_front) && $request->id_front->getClientOriginalName()){
-           $ext =  $request->id_front->getClientOriginalExtension();
-           $file = date('YmdHis').rand(1,99999).'.'.$ext;
-           $request->id_front->storeAs('public/employee',$file);
+           $ext1 =  $request->id_front->getClientOriginalExtension();
+           $file1 = date('YmdHis').rand(1,99999).'.'.$ext1;
+           $request->id_front->storeAs('public/employee',$file1);
       }
       else
       {
         if(!$employee->id_front)
-        $file = '';
+        $file1 = '';
          else
-        $file = $employee->id_front;
+        $file1 = $employee->id_front;
       }
 
       if(isset($request->id_back) && $request->id_back->getClientOriginalName()){
-       $ext =  $request->id_back->getClientOriginalExtension();
-       $file = date('YmdHis').rand(1,99999).'.'.$ext;
-       $request->id_back->storeAs('public/employee',$file);
-  }
-  else
-  {
-    if(!$employee->id_back)
-    $file = '';
-     else
-    $file = $employee->id_back;
-  }
+       $ext2 =  $request->id_back->getClientOriginalExtension();
+       $file2 = date('YmdHis').rand(1,99999).'.'.$ext2;
+       $request->id_back->storeAs('public/employee',$file2);
+    }
+    else
+    {
+      if(!$employee->id_back)
+          $file2 = '';
+       else
+      $file2 = $employee->id_back;
+     }
 
-
-    //   $employee->role_id = $request->role_id;
+       $employee->role_id = $request->role_id;
        $employee->emp_image = $file;
-       $employee->id_front = $file;
-       $employee->id_back = $file;
+       $employee->id_front = $file1;
+       $employee->id_back = $file2;
        $employee->name = $request->name;
        $employee->nick_name = $request->nick_name;
        $employee->phone = $request->phone;
        $employee->address = $request->address;
-       //$employee->emp_image = $request->emp_image;
-    //    $employee->id_front = $request->id_front;
-    //    $employee->id_back = $request->id_back;
        $employee->specilist = $request->specilist;
        $employee->save();
        return redirect()->route('employee.index');
@@ -189,8 +188,11 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return redirect()->route('employee.index'); // controller route
     }
+
+    
 }

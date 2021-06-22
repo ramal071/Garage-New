@@ -10,7 +10,7 @@ class Employee extends Model
 
    // protected $table = 'employee';
 
-    public function departments()
+    public function role()
     {
         return $this->belongsTo('App\Role');
     }

@@ -51,20 +51,24 @@
       </div>
 
 {{-- 8 --}}
-{{-- <div class="form-group">
+<div class="form-group">
   <div class="row">
     <label class="col-md-3">Role</label>
     <div class="col-md-6">
       <select name="role_id" class="form-control">
         <option value="">Choose a Role</option>
-        @foreach($roles as $r)
-          <option value="{{ $r->id }}">{{ $r->role_name }}</option>
+        @foreach($role as $r)
+          <option value="{{ $r->id }}"
+            @if($r->id == $employee->role_id)
+            selected
+            @endif
+            >{{ $r->role_name }}</option>
         @endforeach
       </select>
     </div>
     <div class="clearfix"></div>
   </div>
-</div> --}}
+</div>
 
       <div class="form-group">
         <div class="row">
@@ -133,6 +137,7 @@
 
       <div class="form-group">
         <input type="submit" class="btn btn-info" value="Update">
+        <a href="{{route('employee.index')}}" class="btn btn-primary">Back</a>
       </div>
     </form>
   </div>
