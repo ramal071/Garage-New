@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use App\Brand;
 
-class RoleController extends Controller
+class BrandController extends Controller
 {
-    public function __construct()
-    { // chec user login or not
-        $this->middleware('auth'); 
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $arr['roles'] = Role::all();
-    	return view('pages.role.index')->with($arr);
+        $arr['brands'] = Brand::all();
+    	return view('stock.brand.index')->with($arr);
     }
 
     /**
@@ -29,8 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // add new roles page = create.blade.php
-        return view('pages.role.create');
+        return view('stock.brand.create');
     }
 
     /**
@@ -39,14 +34,14 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Role $role)
+    public function store(Request $request, Brand $brand)
     {
-        // save role
-        
-        $role->role_name = $request->role_name;
-        $role->save();
-        //redirect to controller index
-        return redirect()->route('role.index');
+        $brand->code = $request->code;
+        $brand->name = $request->name;
+        $brand->description = $request->description;
+        $brand->save();
+        //redirect to controller -> index
+        return redirect()->route('brand.index');
     }
 
     /**
@@ -66,11 +61,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit( Brand $brand)
     {
-        //
-        $arr['role'] = $role;
-        return view('pages.role.edit')->with($arr);
+        $arr['brand'] = $brand;
+        return view('stock.brand.edit')->with($arr);
     }
 
     /**
@@ -80,11 +74,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Brand $brand)
     {
-        $role->role_name = $request->role_name;
-        $role->save();
-        return redirect()->route('role.index');
+        $brand->code = $request->code;
+        $brand->name = $request->name;
+        $brand->description = $request->description;
+        $brand->save();
+        return redirect()->route('brand.index');
     }
 
     /**
@@ -95,7 +91,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        return redirect()->route('role.index');
+        Brand::destroy($id);
+        return redirect()->route('brand.index');
     }
 }

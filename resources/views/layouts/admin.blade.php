@@ -51,6 +51,7 @@
             </a>
           </li>
 
+{{-- Employee --}}
                 <li>
                     <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Employees</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
@@ -71,8 +72,64 @@
                     </ul>
                 </li>
 
-
+  {{-- Stock --}}
                 <li>
+                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Stock Details</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        
+                        <li>
+                            <a href="{{route('brand.index')}}" class="nav-link"> 
+                              <i class="fa fa-diamond"></i>
+                              Brand
+                            </a>
+                          </li>
+
+                          <li>
+                            <a href="{{route('category.index')}}" class="nav-link"> 
+                              <i class="fa fa-diamond"></i>
+                              category/model
+                            </a>
+                          </li>
+
+                        {{-- <li>
+                            <a href="{{route('models.index')}}"  class="nav-link">
+                            <i class="fa fa-diamond"></i>
+                                Models
+                            </a>
+                          </li> --}}
+{{-- Manufacturer --}}
+                          <li>
+                            <a href="{{route('manufacturer.index')}}"  class="nav-link">
+                            <i class="fa fa-diamond"></i>
+                                Manufacturer
+                            </a>
+                          </li>
+{{-- {{route('vehicle.index')}} --}}
+                          <li>
+                            <a href="{{route('vehicle.index')}}"  class="nav-link">
+                            <i class="fa fa-diamond"></i>
+                                Vehicle
+                            </a>
+                          </li>
+{{-- {{route('capacity.index')}} --}}
+                          <li>
+                            <a href=" {{route('capacity.index')}}"  class="nav-link">
+                            <i class="fa fa-diamond"></i>
+                                Capacity
+                            </a>
+                          </li>
+
+                          <li>
+                            <a href=" {{route('stock.index')}}"  class="nav-link">
+                            <i class="fa fa-diamond"></i>
+                                Stock
+                            </a>
+                          </li>
+                    </ul>
+                </li>
+
+
+                {{-- <li>
                     <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning float-right">16/24</span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="mailbox.html">Inbox</a></li>
@@ -184,11 +241,11 @@
                     </ul>
                 </li>
                
-                {{-- <li>
+               <li>
                     <a class="btn btn-sm btn-white btn-block" href="{{ route('register') }}">Create an account</a>
                 </li>  --}}
 
-                    {{--            log out       --}}
+{{--  log out       --}}
                 
                 <li class="landing_link">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -213,13 +270,9 @@
                     <input type="search" placeholder="Search for something..." class="form-control search" name="query" id="search">
                 </div>
             </form>
-{{-- 
-            <form action="/search" class="navbar-form navbar-left">
-                <div class="form-group">
-                  <input type="text" name="query" class="form-control search-box" placeholder="Search Here">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-              </form> --}}
+
+
+{{-- search--}}
 
 
         </div>

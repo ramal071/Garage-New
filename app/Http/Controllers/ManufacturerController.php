@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use App\Manufacturer;
 
-class RoleController extends Controller
+class ManufacturerController extends Controller
 {
-    public function __construct()
-    { // chec user login or not
-        $this->middleware('auth'); 
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $arr['roles'] = Role::all();
-    	return view('pages.role.index')->with($arr);
+        $arr['manufacturers'] = Manufacturer::all();
+    	return view('stock.manufacturer.index')->with($arr);
     }
 
     /**
@@ -29,8 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // add new roles page = create.blade.php
-        return view('pages.role.create');
+        return view('stock.manufacturer.create');
     }
 
     /**
@@ -39,14 +34,12 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Role $role)
+    public function store(Request $request, Manufacturer $manufacturer)
     {
-        // save role
-        
-        $role->role_name = $request->role_name;
-        $role->save();
+        $manufacturer->year = $request->year;
+        $manufacturer->save();
         //redirect to controller index
-        return redirect()->route('role.index');
+        return redirect()->route('manufacturer.index');
     }
 
     /**
@@ -66,11 +59,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Manufacturer $manufacturer)
     {
-        //
-        $arr['role'] = $role;
-        return view('pages.role.edit')->with($arr);
+        $arr['manufacturer'] = $manufacturer;
+        return view('stock.manufacturer.edit')->with($arr);
     }
 
     /**
@@ -80,11 +72,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Manufacturer $manufacturer)
     {
-        $role->role_name = $request->role_name;
-        $role->save();
-        return redirect()->route('role.index');
+        $manufacturer->year = $request->year;
+        $manufacturer->save();
+        return redirect()->route('manufacturer.index');
     }
 
     /**
@@ -95,7 +87,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        return redirect()->route('role.index');
+        Manufacturer::destroy($id);
+        return redirect()->route('manufacturer.index');
     }
 }

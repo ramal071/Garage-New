@@ -105,6 +105,7 @@
           <div class="clearfix"></div>
         </div>
       </div>
+      
       <div class="form-group">
         <input type="submit" class="btn btn-info" value="Save">
         <a href="{{route('employee.index')}}" class="btn btn-primary">Back</a>

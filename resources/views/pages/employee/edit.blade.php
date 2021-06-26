@@ -127,9 +127,7 @@
         <div class="row">
           <label class="col-md-3">Specilist</label>
           <div class="col-md-6">
-              <textarea name="specilist" class="form-control">
-                {{ $employee->specilist }}
-              </textarea>
+              <textarea name="specilist" class="form-control">{{ $employee->specilist }}</textarea>
             </div>
           <div class="clearfix"></div>
         </div>

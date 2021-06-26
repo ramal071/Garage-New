@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use App\Category;
+use App\Subcategory;
 
-class RoleController extends Controller
+class SubcategoryController extends Controller
 {
-    public function __construct()
-    { // chec user login or not
-        $this->middleware('auth'); 
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $arr['roles'] = Role::all();
-    	return view('pages.role.index')->with($arr);
+         $arr['subcategories'] = Subcategory::all();
+    	 return view('stock.subcategory.index')->with($arr);
     }
 
     /**
@@ -29,8 +26,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // add new roles page = create.blade.php
-        return view('pages.role.create');
+       // return view('stock.subcategory.create');
+        $arr['category'] = Category::all();   // category table eka join wenawa
+        return view('stock.subcategory.create')->with($arr);
     }
 
     /**
@@ -39,14 +37,15 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Role $role)
+    public function store(Request $request, Subcategory $subcategory)
     {
-        // save role
-        
-        $role->role_name = $request->role_name;
-        $role->save();
-        //redirect to controller index
-        return redirect()->route('role.index');
+        $subcategory->code = $request->code;
+        $subcategory->name = $request->name;
+        $subcategory->description = $request->description;
+        $subcategory->category_id = $request->category_id;
+       // $subcategory->  = $request->category_id;
+        $subcategory->save();
+        return redirect()->route('subcategory.index');
     }
 
     /**
@@ -66,11 +65,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
         //
-        $arr['role'] = $role;
-        return view('pages.role.edit')->with($arr);
     }
 
     /**
@@ -80,11 +77,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        $role->role_name = $request->role_name;
-        $role->save();
-        return redirect()->route('role.index');
+        //
     }
 
     /**
@@ -95,7 +90,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        return redirect()->route('role.index');
+        Subcategory::destroy($id);
+        return redirect()->route('subcategory.index');
     }
 }

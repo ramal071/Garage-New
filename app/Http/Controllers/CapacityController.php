@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use App\Capacity;
 
-class RoleController extends Controller
+class CapacityController extends Controller
 {
-    public function __construct()
-    { // chec user login or not
-        $this->middleware('auth'); 
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $arr['roles'] = Role::all();
-    	return view('pages.role.index')->with($arr);
+        $arr['capacities'] = Capacity::all();
+    	return view('stock.capacity.index')->with($arr);
     }
 
     /**
@@ -29,8 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // add new roles page = create.blade.php
-        return view('pages.role.create');
+        return view('stock.capacity.create');
     }
 
     /**
@@ -39,14 +34,12 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Role $role)
+    public function store(Request $request, Capacity $capacity)
     {
-        // save role
-        
-        $role->role_name = $request->role_name;
-        $role->save();
+        $capacity->capacity_name = $request->capacity_name;
+        $capacity->save();
         //redirect to controller index
-        return redirect()->route('role.index');
+        return redirect()->route('capacity.index');
     }
 
     /**
@@ -66,11 +59,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Capacity $capacity)
     {
-        //
-        $arr['role'] = $role;
-        return view('pages.role.edit')->with($arr);
+        $arr['capacity'] = $capacity;
+        return view('stock.capacity.edit')->with($arr);
     }
 
     /**
@@ -80,11 +72,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Capacity $capacity)
     {
-        $role->role_name = $request->role_name;
-        $role->save();
-        return redirect()->route('role.index');
+        $capacity->capacity_name = $request->capacity_name;
+        $capacity->save();
+        return redirect()->route('capacity.index');
     }
 
     /**
@@ -95,7 +87,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        return redirect()->route('role.index');
+        Capacity::destroy($id);
+        return redirect()->route('capacity.index');
     }
 }

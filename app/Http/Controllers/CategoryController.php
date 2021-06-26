@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use App\Category;
 
-class RoleController extends Controller
+class CategoryController extends Controller
 {
-    public function __construct()
-    { // chec user login or not
-        $this->middleware('auth'); 
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $arr['roles'] = Role::all();
-    	return view('pages.role.index')->with($arr);
+        $arr['categories'] = Category::all();
+    	return view('stock.category.index')->with($arr);
     }
 
     /**
@@ -29,8 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // add new roles page = create.blade.php
-        return view('pages.role.create');
+        return view('stock.category.create');
     }
 
     /**
@@ -39,14 +34,14 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Role $role)
+    public function store(Request $request, Category $category)
     {
-        // save role
-        
-        $role->role_name = $request->role_name;
-        $role->save();
-        //redirect to controller index
-        return redirect()->route('role.index');
+        $category->code = $request->code;
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save();
+        //redirect to controller -> index
+        return redirect()->route('category.index');
     }
 
     /**
@@ -66,11 +61,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Category $category)
     {
-        //
-        $arr['role'] = $role;
-        return view('pages.role.edit')->with($arr);
+        $arr['category'] = $category;
+        return view('stock.category.edit')->with($arr);
     }
 
     /**
@@ -80,11 +74,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Category $category)
     {
-        $role->role_name = $request->role_name;
-        $role->save();
-        return redirect()->route('role.index');
+        $category->code = $request->code;
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save();
+        return redirect()->route('category.index');
     }
 
     /**
@@ -95,7 +91,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        return redirect()->route('role.index');
+        Category::destroy($id);
+        return redirect()->route('category.index');
     }
 }

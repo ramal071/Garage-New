@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use App\Models;
 
-class RoleController extends Controller
+class ModelsController extends Controller
 {
-    public function __construct()
-    { // chec user login or not
-        $this->middleware('auth'); 
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $arr['roles'] = Role::all();
-    	return view('pages.role.index')->with($arr);
+        $arr['models'] = Models::all();
+    	return view('stock.models.index')->with($arr);
     }
 
     /**
@@ -29,8 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // add new roles page = create.blade.php
-        return view('pages.role.create');
+        return view('stock.models.create');
     }
 
     /**
@@ -39,14 +34,14 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Role $role)
+    public function store(Request $request, Models $models)
     {
-        // save role
-        
-        $role->role_name = $request->role_name;
-        $role->save();
-        //redirect to controller index
-        return redirect()->route('role.index');
+        $models->code = $request->code;
+        $models->name = $request->name;
+        $models->description = $request->description;
+        $models->save();
+        //redirect to controller -> index
+        return redirect()->route('models.index');
     }
 
     /**
@@ -66,11 +61,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Models $models)
     {
-        //
-        $arr['role'] = $role;
-        return view('pages.role.edit')->with($arr);
+        $arr['models'] = $models;
+        return view('stock.models.edit')->with($arr);
     }
 
     /**
@@ -80,11 +74,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Models $models)
     {
-        $role->role_name = $request->role_name;
-        $role->save();
-        return redirect()->route('role.index');
+        $models->code = $request->code;
+        $models->name = $request->name;
+        $models->description = $request->description;
+        $models->save();
+        return redirect()->route('models.index');
     }
 
     /**
@@ -95,7 +91,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        return redirect()->route('role.index');
+        Models::destroy($id);
+        return redirect()->route('models.index');
     }
 }
