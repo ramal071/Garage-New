@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     //  add roles to technician
-    //  protected $table = 'roles';
+    protected $table = 'roles';
+    
+    protected $fillable = [
+       'name','status','slug'
+    ];
 
-    public function employee()
+    protected $casts = [
+        'status'=>'boolean'
+    ];
+
+    public function employees()
     {
-        return $this->hasMany('App\Employee');
+        return $this->belongsToMany(Employee::class,'employee_role','role_id','employee_id');
     }
 }

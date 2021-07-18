@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCapacitiesTable extends Migration
+class CreateCustomerVehiclesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateCapacitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('capacities', function (Blueprint $table) {
+        Schema::create('customer_vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('capacity_name');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->string('license');
+            $table->string('type');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateCapacitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('capacities');
+        Schema::dropIfExists('customer_vehicles');
     }
 }

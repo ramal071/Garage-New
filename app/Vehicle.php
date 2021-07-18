@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
-    public function stock()
+    //
+    public function brand()
     {
-        return $this->hasMany('App\Stock');
+        return $this->belongsTo('App\Brand');
     }
 }

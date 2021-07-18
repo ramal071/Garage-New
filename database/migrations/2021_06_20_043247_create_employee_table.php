@@ -22,7 +22,7 @@ class CreateEmployeeTable extends Migration
             $table->string( 'emp_image');
             $table->string( 'id_front');
             $table->string( 'id_back');
-            $table->string( 'specilist');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

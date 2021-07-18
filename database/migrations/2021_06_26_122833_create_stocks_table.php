@@ -15,14 +15,14 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('brand_id')->nullable();
-            $table->string('category_id')->nullable();
-            $table->string('capacity_id')->nullable();
-            $table->string('manufacturer_id')->nullable();
-            $table->string('vehicle_id')->nullable();
-            $table->string('qty')->nullable();
-            $table->string('color')->nullable();
-            $table->string('description')->nullable();
+            $table->float('quantity');
+            $table->string('dealer');
+            $table->decimal('dealer_price', $precision = 8, $scale = 2);
+            $table->decimal('selling_price', $precision = 8, $scale = 2);
+            $table->float('discount')->default(0);
+            $table->json('description');
+            $table->boolean('is_damage')->default(false);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
